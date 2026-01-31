@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
@@ -10,12 +9,11 @@ plugins {
 android {
     namespace = "com.corrot.kwiatonomousapp"
 
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.corrot.kwiatonomousapp"
         minSdk = 27
-        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,10 +48,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     packaging  {
