@@ -10,11 +10,13 @@ import io.ktor.server.netty.*
 import org.koin.ktor.ext.inject
 
 
-fun main() {
+fun main(args: Array<String>) {
+    Args.parse(args)
+
     embeddedServer(
         factory = Netty,
-        host = Constants.BASE_URL,
-        port = Constants.PORT
+        host = Configuration.baseUrl,
+        port = Configuration.port
     ) {
         configureKoin()
         configureMonitoring()

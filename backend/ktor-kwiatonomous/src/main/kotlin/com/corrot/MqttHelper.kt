@@ -1,6 +1,5 @@
 package com.corrot
 
-import com.corrot.Constants.MQTT_BROKER_URL
 import com.corrot.Constants.MQTT_LOGIN
 import com.corrot.Constants.MQTT_PASSWORD
 import org.eclipse.paho.client.mqttv3.MqttClient
@@ -9,7 +8,9 @@ import org.eclipse.paho.client.mqttv3.MqttMessage
 
 object MqttHelper {
 
-    private val client = MqttClient(MQTT_BROKER_URL, MqttClient.generateClientId())
+    private val client by lazy {
+        MqttClient(Configuration.mqttBrokerUrl, MqttClient.generateClientId())
+    }
     private val options = MqttConnectOptions().apply {
         userName = MQTT_LOGIN
         password = MQTT_PASSWORD.toCharArray()

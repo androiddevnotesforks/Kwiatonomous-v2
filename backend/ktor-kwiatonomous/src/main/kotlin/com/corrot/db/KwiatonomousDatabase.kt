@@ -1,14 +1,14 @@
 package com.corrot.db
 
+import com.corrot.Configuration
 import com.corrot.Constants.DB_FILE_NAME
-import com.corrot.Constants.DB_FILE_PATH
 import com.corrot.Constants.DEBUG_MODE
 import com.corrot.calculateHA1
 import com.corrot.db.data.dao.*
 import com.corrot.db.data.model.DeviceConfiguration
 import com.corrot.db.data.model.UserDevice
-import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import org.jetbrains.exposed.v1.jdbc.Database
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.sql.DriverManager
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -16,19 +16,18 @@ import java.util.*
 
 class KwiatonomousDatabase {
 
-    private val debugDbPath = "jdbc:sqlite:file:test?mode=memory&cache=shared"
-//    private val debugDbPath = "jdbc:sqlite:file:kwiatonomous.sqlite"
-
-    private val releaseDbPath = "jdbc:sqlite:file:$DB_FILE_PATH/$DB_FILE_NAME"
-
-    private val dbPath = if (DEBUG_MODE) debugDbPath else releaseDbPath
+    private val dbPath by lazy {
+        when {
+            DEBUG_MODE -> "jdbc:sqlite:file:test?mode=memory&cache=shared"
+            else -> "jdbc:sqlite:file:${Configuration.dbFilePath}/$DB_FILE_NAME"
+        }
+    }
 
     // Hack to prevent closing in memory database
     // https://github.com/JetBrains/Exposed/issues/726#issuecomment-932202379
-    private val keepAliveConnection =
-        if (DEBUG_MODE) DriverManager.getConnection(dbPath) else null
+    private val keepAliveConnection = if (DEBUG_MODE) DriverManager.getConnection(dbPath) else null
 
-    val db: Database = Database.connect(dbPath, "org.sqlite.JDBC")
+    val db: Database by lazy { Database.connect(dbPath, "org.sqlite.JDBC") }
 
     fun isConnected() = try {
         transaction { !connection.isClosed }

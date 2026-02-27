@@ -3,6 +3,7 @@ val kotlinVersion: String by project
 val logbackVersion: String by project
 val koinVersion: String by project
 val exposedVersion: String by project
+val kotlinCliVersion: String by project
 
 plugins {
     application
@@ -12,7 +13,7 @@ plugins {
 }
 
 group = "com.corrot"
-version = "0.3.0"
+version = "0.4.0"
 
 application {
     mainClass.set("com.corrot.ApplicationKt")
@@ -27,7 +28,7 @@ tasks {
     shadowJar {
         archiveFileName = "kwiatonomous-$version.jar"
         manifest {
-            attributes(Pair("Main-Class", "com.example.ApplicationKt"))
+            attributes(Pair("Main-Class", "com.corrot.ApplicationKt"))
             mergeServiceFiles()
         }
     }
@@ -67,4 +68,6 @@ dependencies {
     // Paho MQTT
     implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 
+    // Kotlinx CLI
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:${kotlinCliVersion}")
 }

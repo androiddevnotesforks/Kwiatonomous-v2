@@ -13,14 +13,14 @@ object Constants {
     const val KWIATONOMOUS_DIGEST_AUTH = "KwiatonomousDigestAuth"
     const val KWIATONOMOUS_REALM = "KwiatonomousRealm"
 
-    const val BASE_URL = "192.168.1.76"
-    const val PORT = 8124
+    const val DEFAULT_BASE_URL = "192.168.1.76"
+    const val DEFAULT_PORT = 8124
 
-    const val MQTT_BROKER_URL = "tcp://192.168.1.120:1883"
+    const val DEFAULT_MQTT_BROKER_URL = "tcp://192.168.1.120:1883"
     const val MQTT_TOPIC_UPDATES = "kwiatonomous/updates/"
     const val MQTT_LOGIN = "mqttuser"
     const val MQTT_PASSWORD = "mqttpassword"
 
-    val DB_FILE_PATH = "${System.getProperty("user.home")}/Desktop/kwiatonomous"
+    val DEFAULT_DB_FILE_PATH = "${System.getProperty("user.home")}/Desktop/kwiatonomous"
     const val DB_FILE_NAME = "kwiatonomous.sqlite"
 }
