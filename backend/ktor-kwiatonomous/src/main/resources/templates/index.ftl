@@ -1,76 +1,96 @@
 <#-- @ftlvariable name="devices" type="kotlin.collections.List<com.corrot.db.data.model.Device>" -->
 <#setting time_zone="GMT">
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <style>
-  table.minimalistBlack {
-    border: 3px solid #000000;
-    text-align: center;
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #f5f7fa;
+    padding: 24px;
+  }
+
+  .table-wrapper {
+    max-width: 700px;
+    margin: auto;
+  }
+
+  table {
+    width: 100%;
     border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   }
 
-  table.minimalistBlack td,
-  table.minimalistBlack th {
-    border: 1px solid #000000;
-    padding: 15px 15px;
+  thead {
+    background: #f0f2f5;
   }
 
-  table.minimalistBlack tbody td {
-    font-size: 15px;
-  }
-
-  table.minimalistBlack thead {
-    background: #CFCFCF;
-    background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-    background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-    background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
-    border-bottom: 3px solid #000000;
-  }
-
-  table.minimalistBlack thead th {
-    font-size: 15px;
-    font-weight: bold;
-    color: #000000;
+  th, td {
+    padding: 14px 16px;
     text-align: center;
   }
 
-  table.minimalistBlack tfoot td {
+  th {
+    font-weight: 600;
     font-size: 14px;
+    color: #333;
+  }
+
+  tbody tr {
+    border-top: 1px solid #eee;
+  }
+
+  tbody tr:hover {
+    background: #fafbfc;
+  }
+
+  .status {
+    font-size: 18px;
+  }
+
+  .footer {
+    text-align: right;
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
   }
 </style>
+</head>
 
-
-<body style="text-align: center; font-family: sans-serif">
-  <h1>Kwiatonomous</h1>
-  <p>
-    <i>All devices</i>
-  </p>
-  <hr>
-  <table class="minimalistBlack">
-    <tr>
-      <th style="background-color: silver">Active</th>
-      <th style="background-color: silver">Device ID</th>
-      <th style="background-color: silver">Last updated</th>
-    </tr>
-    <#list devices?reverse as device>
+<body>
+<div class="table-wrapper">
+  <table>
+    <thead>
       <tr>
-        <td>
-          <#if (((((.now?long / 1000.0) - device.lastUpdate) / 60.0)) <= 30.0)>
-            <span>&#128994;</span>
-          <#else>
-            <span>&#128308;</span>
-          </#if>
-        </td>
-        <td>${device.deviceId}</td>
-        <td>${((device.lastUpdate*1000))?number_to_datetime}</td>
+        <th>Active</th>
+        <th>Device ID</th>
+        <th>Last updated</th>
       </tr>
-    </#list>
+    </thead>
+    <tbody>
+      <#list devices?reverse as device>
+        <tr>
+          <td class="status">
+            <#if (((((.now?long / 1000.0) - device.lastUpdate) / 60.0)) <= 30.0)>
+              🟢
+            <#else>
+              🔴
+            </#if>
+          </td>
+          <td>${device.deviceId}</td>
+          <td>${((device.lastUpdate*1000))?number_to_datetime}</td>
+        </tr>
+      </#list>
+    </tbody>
   </table>
-  <hr>
-  <button onClick="window.location.reload();">Refresh Page</button>
-  <p>(last refreshed ${.now?string.medium})</p>
+
+  <div class="footer">
+    Last refresh: ${.now?string.medium}
+  </div>
+</div>
 </body>
 </html>
