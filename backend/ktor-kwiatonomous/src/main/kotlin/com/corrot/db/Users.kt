@@ -1,6 +1,6 @@
 package com.corrot.db
 
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.Table
 
 object Users : Table() {
     val userId = varchar("userId", 32)

@@ -4,9 +4,14 @@ import com.corrot.db.DeviceEvents
 import com.corrot.db.KwiatonomousDatabase
 import com.corrot.db.data.dto.DeviceEventDto
 import com.corrot.db.data.model.DeviceEvent
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.SortOrder
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.core.and
+import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.greaterEq
+import org.jetbrains.exposed.v1.core.lessEq
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class DeviceEventDaoImpl(private val database: KwiatonomousDatabase) : DeviceEventDao {
 

@@ -6,8 +6,8 @@ import com.corrot.Constants.DEFAULT_WATERING_AMOUNT
 import com.corrot.Constants.DEFAULT_WATERING_INTERVAL_DAYS
 import com.corrot.Constants.DEFAULT_WATERING_ON
 import com.corrot.Constants.DEFAULT_WATERING_TIME
-import org.jetbrains.exposed.sql.ReferenceOption
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.ReferenceOption
+import org.jetbrains.exposed.v1.core.Table
 
 object DevicesConfigurations : Table() {
     val sleepTimeMinutes = integer("sleepTimeMinutes").default(DEFAULT_SLEEP_TIME_MINUTES)

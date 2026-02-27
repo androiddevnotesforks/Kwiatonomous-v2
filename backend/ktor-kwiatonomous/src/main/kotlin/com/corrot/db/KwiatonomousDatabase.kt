@@ -7,8 +7,8 @@ import com.corrot.calculateHA1
 import com.corrot.db.data.dao.*
 import com.corrot.db.data.model.DeviceConfiguration
 import com.corrot.db.data.model.UserDevice
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.Database
 import java.sql.DriverManager
 import java.time.LocalDateTime
 import java.time.ZoneOffset

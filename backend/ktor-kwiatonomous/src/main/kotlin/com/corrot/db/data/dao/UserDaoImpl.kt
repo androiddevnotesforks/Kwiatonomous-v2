@@ -7,9 +7,10 @@ import com.corrot.db.data.model.UserDevice
 import com.corrot.utils.TimeUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class UserDaoImpl(private val database: KwiatonomousDatabase) : UserDao {
 

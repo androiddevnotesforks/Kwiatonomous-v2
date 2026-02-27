@@ -3,9 +3,9 @@ package com.corrot.db.data.dao
 import com.corrot.db.DeviceUpdates
 import com.corrot.db.KwiatonomousDatabase
 import com.corrot.db.data.model.DeviceUpdate
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.*
+import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class DeviceUpdateDaoImpl(private val database: KwiatonomousDatabase) : DeviceUpdateDao {
 

@@ -11,9 +11,10 @@ import com.corrot.db.DevicesConfigurations
 import com.corrot.db.KwiatonomousDatabase
 import com.corrot.db.data.model.Device
 import com.corrot.utils.TimeUtils
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class DeviceDaoImpl(private val database: KwiatonomousDatabase) : DeviceDao {
 

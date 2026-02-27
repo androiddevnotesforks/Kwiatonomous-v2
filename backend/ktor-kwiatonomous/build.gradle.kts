@@ -6,9 +6,9 @@ val exposedVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "2.2.0"
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.0"
-    id("io.ktor.plugin") version "3.2.3"
+    kotlin("jvm") version "2.3.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.10"
+    id("io.ktor.plugin") version "3.4.0"
 }
 
 group = "com.corrot"
@@ -53,7 +53,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jodatime:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-    implementation("org.xerial:sqlite-jdbc:3.50.3.0")
+    implementation("org.xerial:sqlite-jdbc:3.51.2.0")
 
     // DI
     implementation("io.insert-koin:koin-ktor:$koinVersion")

@@ -1,6 +1,6 @@
 package com.corrot.db
 
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.Table
 
 object Devices : Table() {
     val deviceId = varchar("deviceId", 12)
